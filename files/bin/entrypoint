@@ -11,10 +11,16 @@ source "$CONFIGFILES/set_defaults.sh"
 source "$CONFIGFILES/setup_networking.sh"
 source "$CONFIGFILES/setup_pki.sh"
 
-if [ "${USE_CLIENT_CERTIFICATE}" != "true" ] ; then
- source "$CONFIGFILES/setup_ldap.sh"
- source "$CONFIGFILES/setup_otp.sh"
-fi 
+if [ "${USE_LDAP_CONFIG}" != "true" ] ; then
+ if [ "${USE_CLIENT_CERTIFICATE}" != "true" ] ; then
+  source "$CONFIGFILES/setup_ldap.sh"
+  source "$CONFIGFILES/setup_otp.sh"
+ fi 
+fi
+
+if [ "${USE_LDAP_CONFIG}" == "true" ] ; then
+  source "$CONFIGFILES/enable_ldap.sh"
+fi
 
 source "$CONFIGFILES/create_server_config.sh"
 

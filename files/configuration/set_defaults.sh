@@ -11,13 +11,17 @@ show_error () {
  abort=1
 }
 
+if [ "${USE_LDAP_CONFIG}x" == "x" ]; then export USE_LDAP_CONFIG="false"; fi
 if [ "${USE_CLIENT_CERTIFICATE}x" == "x" ]; then export USE_CLIENT_CERTIFICATE="false"; fi
 
-if [ "${OVPN_SERVER_CN}x" == "x" ]; then show_error OVPN_SERVER_CN ; fi
 
-if [ "${USE_CLIENT_CERTIFICATE}" != "true" ]; then
- if [ "${LDAP_URI}x" == "x" ]; then show_error LDAP_URI ; fi
- if [ "${LDAP_BASE_DN}x" == "x" ]; then show_error LDAP_BASE_DN ; fi
+if [ "${USE_LDAP_CONFIG}" != "true" ]; then
+ if [ "${OVPN_SERVER_CN}x" == "x" ]; then show_error OVPN_SERVER_CN ; fi
+
+ if [ "${USE_CLIENT_CERTIFICATE}" != "true" ]; then
+  if [ "${LDAP_URI}x" == "x" ]; then show_error LDAP_URI ; fi
+  if [ "${LDAP_BASE_DN}x" == "x" ]; then show_error LDAP_BASE_DN ; fi
+ fi
 fi
 
 if [ "$abort" == "1" ]; then exit 1 ; fi
@@ -30,6 +34,7 @@ export LOG_DIR="${OPENVPN_DIR}/logs"
 if [ ! -d "$LOG_DIR" ]; then
  mkdir -p $LOG_DIR
 fi
+
 
 if [ "${OVPN_TLS_CIPHERS}x" == "x" ];            then export OVPN_TLS_CIPHERS="TLS-DHE-RSA-WITH-AES-256-CBC-SHA"; fi
 if [ "${OVPN_PROTOCOL}x" == "x" ];               then export OVPN_PROTOCOL="udp";                                 fi

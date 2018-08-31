@@ -23,6 +23,7 @@ Configuration is via environmental variables.  Here's a list, along with the def
  * `LDAP_BIND_USER_DN` (_undefined_):  If your LDAP server doesn't allow anonymous binds, use this to specify a user DN to use for lookups.
  * `LDAP_BIND_USER_PASS` (_undefined_): The password for the bind user.
  * `LDAP_FILTER` (_undefined_): A filter to apply to LDAP lookups.  This allows you to limit the lookup results and thereby who will be authenticated.  e.g. `memberOf=cn=staff,cn=groups,cn=accounts,dc=example,dc=org`
+ * `USE_LDAP_CONFIG` (false): A option to read LDAP credintals from the ldap_openvpn.conf file to prevent needing to pass `LDAP_BIND_USER_DN` and `LDAP_BIND_USER_PASS` at run time. e.g. `-v $PWD/ldap/ldap_openvpn.conf:/etc/ldap_openvpn.conf:ro`
  * `LDAP_LOGIN_ATTRIBUTE` (uid):  The LDAP attribute used for the authentication lookup, i.e. which attribute is matched to the username when you log into the OpenVPN server.
  * `LDAP_TLS` (false):  Set to 'true' to enable a TLS connection to the LDAP server.
  * `LDAP_TLS_CA_CERT` (_undefined_): The contents of the CA certificate file for the LDAP server.  You'll need this to enable TLS if using self-signed certificates.
