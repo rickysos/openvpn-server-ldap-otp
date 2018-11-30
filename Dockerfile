@@ -1,6 +1,6 @@
 FROM centos:6.8
 
-MAINTAINER Brian Lycett <brian@wheelybird.com>
+MAINTAINER rickysos 
 
 RUN yum -y install epel-release iptables bash nss-pam-ldapd ca-certificates
 RUN yum -y install openvpn whatmask fail2ban
