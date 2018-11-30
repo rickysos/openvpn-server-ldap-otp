@@ -84,7 +84,7 @@ This is useful for testing out your VPN server and isn't intended as an especial
 #### Git repository
 
 The Dockerfile and associated assets are available at:
-https://github.com/wheelybird/openvpn-server-ldap-otp
+https://github.com/rickysos/openvpn-server-ldap-otp
 
 #### Fail2ban Administration
 
